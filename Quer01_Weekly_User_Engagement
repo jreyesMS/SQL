@@ -17,5 +17,3 @@ WHERE
   e.event_name = 'login'
 GROUP BY DATE_TRUNC('week', e.occurred_at)
 ORDER BY week
-
-#Test Test Test
