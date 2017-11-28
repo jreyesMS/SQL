@@ -1,0 +1,19 @@
+/*
+Assignment:  Determine the reason for a recent dip in Yammer's user engagement.
+
+This query retrieves the number of active Yammer users on a weekly basis.  The corresponding chart shows
+that the dip in user engagement occurred on the week of July 28, 2014 and continued through the month of
+August.  The objective of this analysis is to determine why the dip occurred and to provide recommendations
+on appropriate corrective actions.
+
+*/
+
+SELECT DATE_TRUNC('week', e.occurred_at) AS week ,
+       COUNT(DISTINCT e.user_id) AS active_users_weekly
+FROM tutorial.yammer_events e
+WHERE 
+  e.event_type = 'engagement'
+  AND 
+  e.event_name = 'login'
+GROUP BY DATE_TRUNC('week', e.occurred_at)
+ORDER BY week
